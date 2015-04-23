@@ -1,0 +1,18 @@
+﻿@model IEnumerable<SpendThriftModel.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-danger">Product Categories</h2>
+
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <h3 class="text-primary">@Html.ActionLink(item.CategoryName, "Browse", new { category = item.CategoryName })</h3>
+        </li>
+    }
+</ul>
+

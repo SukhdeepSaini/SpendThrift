@@ -1,0 +1,31 @@
+﻿<h2>Search Products</h2>
+
+<form name="ebaySearchForm" novalidate>
+    <div class="row">
+        <div class="col-md-3">
+                <input type="text" name="name" class="form-control" ng-model="searchItem.name" placeholder="Seach Criteria" required/>
+                <div class="text-danger" ng-show="ebaySearchForm.name.$error.required && ebaySearchForm.name.$dirty">Enter Name of Product</div>
+        </div>
+        <div class="col-md-3">
+                <input type="text" name="number" class="form-control" ng-model="searchItem.number" placeholder="Number Of Search Results" required/>
+                <div class="text-danger" ng-show="ebaySearchForm.number.$error.required && ebaySearchForm.number.$dirty">Enter Number Of Items required in result</div>
+        </div> 
+        <div class="col-md-2">
+            <button class="btn btn-default" ng-disabled="ebaySearchForm.$invalid" ng-click="searchebay(searchItem)">Search Products</button>
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" ng-model="search.itemTitle" placeholder="Filter Products">
+        </div>
+     </div>
+</form>
+
+<br />
+<br />
+
+<div class="row col-md-offset-1">
+    <div class="col-md-3 col-md-offset-0 ebayItemsDiv" ng-repeat="item in ebayData | filter: search">
+        <a href="{{item.itemURL}}" target="_blank" data-toggle="popover" title="" data-content="Test PopOver" data-original-title="Search Food Recipes" data-placement="top"><img ng-src="{{item.imageUrl}}" class="thumbnail descpopover" /></a>
+        <p class="text-success">{{item.itemTitle}}</p>
+        <a class="btn btn-info btn-group-lg" href="{{item.itemURL}}" target="_blank">But It Now</a>
+    </div>
+</div>

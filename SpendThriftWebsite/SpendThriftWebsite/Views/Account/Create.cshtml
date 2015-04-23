@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container" ng-controller="AccountCtrl">
+    <form name="accountForm" novalidate>
+        <main class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" name="username" class="form-control" ng-model="customer.username" required />
+                    <div class="text-danger" ng-show="accountForm.username.$error.required && accountForm.username.$dirty">Please Enter User Name</div>
+                </div>
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" name="firstName" class="form-control" ng-model="customer.firstName" required />
+                    <div class="text-danger" ng-show="accountForm.firstName.$error.required && accountForm.firstName.$dirty">Please Enter First Name</div>
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" class="form-control" ng-model="customer.lastName" required />
+                    <div class="text-danger" ng-show="accountForm.lastName.$error.required && accountForm.lastName.$dirty">Please Enter Last Name</div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" ng-model="customer.email" required />
+                    <div class="text-danger" ng-show="accountForm.email.$error.required && accountForm.email.$dirty">Please Enter email address</div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" ng-model="customer.password" required />
+                    <div class="text-danger" ng-show="accountForm.password.$error.required && accountForm.password.$dirty">Please Enter password</div>
+                </div>
+            </div>
+        </main>
+        <button class="btn btn-default" ng-disabled="accountForm.$invalid" ng-click="save(customer)">Create</button>
+        <div class="label-primary" ng-show="error">An Error Occured Saving Account</div>
+    </form>
+</div>

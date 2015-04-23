@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SpendThriftModel.CUSTOMER>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customers</h2>
+
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.USERNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FIRSTNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LASTNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PHONE_NUMBER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PASSWORD)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.USERNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FIRSTNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LASTNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMAIL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PHONE_NUMBER)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PASSWORD)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { username = item.USERNAME }) |
+                @Html.ActionLink("Delete", "Delete", new { username = item.USERNAME })
+            </td>
+        </tr>
+    }
+
+</table>

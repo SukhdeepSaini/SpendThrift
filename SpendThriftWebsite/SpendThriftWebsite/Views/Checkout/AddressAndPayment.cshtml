@@ -1,0 +1,56 @@
+﻿@model SpendThriftModel.Order
+
+@{
+    ViewBag.Title = "AddressAndPayment";
+}
+
+<h2>Shipping Address</h2>
+
+<fieldset>
+    <div class="row">
+        <div class="col-md-4">
+            <h3 class="text-danger">@Html.DisplayNameFor(model => model.CustUsername)</h3>
+            <h3 class="text-danger">@Html.DisplayFor(model => model.CustUsername)</h3>
+        </div>
+        <div class="col-md-4">
+            <h3 class="text-danger">@Html.DisplayNameFor(model => model.CustomerName)</h3>
+            <h3 class="text-danger">@Html.DisplayFor(model => model.CustomerName)</h3>
+    </div>
+    </div>
+</fieldset>
+<fieldset>
+    <div class="row">
+        <div class="col-md-4">
+            <h3 class="text-info">@Html.DisplayNameFor(model => model.Street_Address)</h3>
+            <h3 class="text-info"> @Html.DisplayFor(model => model.Street_Address)</h3>
+        </div>
+        <div class="col-md-4">
+            <h3 class="text-info">@Html.DisplayNameFor(model => model.Apartment)</h3>
+            <h3 class="text-info">@Html.DisplayFor(model => model.Apartment)</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h3 class="text-info">@Html.DisplayNameFor(model => model.State)</h3>
+            <h3 class="text-info">@Html.DisplayFor(model => model.State)</h3>
+        </div>
+        <div class="col-md-4">
+            <h3 class="text-info">@Html.DisplayNameFor(model => model.Country)</h3>
+            <h3 class="text-info">@Html.DisplayFor(model => model.Country)</h3>
+        </div>
+        <div class="col-md-4">
+            <h3 class="text-info">@Html.DisplayNameFor(model => model.ZipCode)</h3>
+            <h3 class="text-info">@Html.DisplayFor(model => model.ZipCode)</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h3 class="text-danger">@Html.DisplayNameFor(model => model.OrderStatus)</h3>
+            <h3 class="text-danger">@Html.DisplayFor(model => model.OrderStatus)</h3>
+        </div>
+    </div>
+</fieldset>
+<p>
+    <h2 class="alert alert-success col-md-3">@Html.ActionLink("Billing Information", "BillingInformation")</h2>
+</p>

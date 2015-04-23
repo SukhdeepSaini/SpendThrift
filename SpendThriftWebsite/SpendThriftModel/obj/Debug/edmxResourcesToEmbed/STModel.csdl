@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SpendThriftDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ADDRESS_BOOK">
+    <Key>
+      <PropertyRef Name="CUSTOMER" />
+      <PropertyRef Name="ADDRESS_BOOK_ID" />
+    </Key>
+    <Property Name="CUSTOMER" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDRESS_BOOK_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="STREET_ADDRESS" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="APARTMENT" Type="Int32" Nullable="false" />
+    <Property Name="STATE" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="COUNTRY" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ZIPCODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CUSTOMER1" Relationship="Self.FK__ADDRESS_B__CUSTO__1273C1CD" FromRole="ADDRESS_BOOK" ToRole="CUSTOMER" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="USERNAME" />
+    </Key>
+    <Property Name="USERNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FIRSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LASTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EMAIL" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PHONE_NUMBER" Type="Int32" Nullable="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ADDRESS_BOOK" Relationship="Self.FK__ADDRESS_B__CUSTO__1273C1CD" FromRole="CUSTOMER" ToRole="ADDRESS_BOOK" />
+    <NavigationProperty Name="Reviews" Relationship="SpendThriftDatabaseModel.FK__Review__CustUser__1FCDBCEB" FromRole="CUSTOMER" ToRole="Review" />
+    <NavigationProperty Name="Carts" Relationship="SpendThriftDatabaseModel.FK__Cart__CustUserNa__300424B4" FromRole="CUSTOMER" ToRole="Cart" />
+    <NavigationProperty Name="Orders" Relationship="SpendThriftDatabaseModel.FK__Orders__CustUser__34C8D9D1" FromRole="CUSTOMER" ToRole="Order" />
+    <NavigationProperty Name="BillingInformation" Relationship="SpendThriftDatabaseModel.FK__BillingIn__CustU__4CA06362" FromRole="CUSTOMER" ToRole="BillingInformation" />
+  </EntityType>
+  <Association Name="FK__ADDRESS_B__CUSTO__1273C1CD">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+    <End Role="ADDRESS_BOOK" Type="Self.ADDRESS_BOOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="USERNAME" />
+      </Principal>
+      <Dependent Role="ADDRESS_BOOK">
+        <PropertyRef Name="CUSTOMER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="STEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ADDRESS_BOOK" EntityType="Self.ADDRESS_BOOK" />
+    <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+    <AssociationSet Name="FK__ADDRESS_B__CUSTO__1273C1CD" Association="Self.FK__ADDRESS_B__CUSTO__1273C1CD">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="ADDRESS_BOOK" EntitySet="ADDRESS_BOOK" />
+    </AssociationSet>
+    <EntitySet Name="Categories" EntityType="SpendThriftDatabaseModel.Category" />
+    <EntitySet Name="Products" EntityType="SpendThriftDatabaseModel.Product" />
+    <EntitySet Name="Reviews" EntityType="SpendThriftDatabaseModel.Review" />
+    <AssociationSet Name="FK__Review__CustUser__1FCDBCEB" Association="SpendThriftDatabaseModel.FK__Review__CustUser__1FCDBCEB">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Review__ProductI__1ED998B2" Association="SpendThriftDatabaseModel.FK__Review__ProductI__1ED998B2">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="Product_And_Category" Association="SpendThriftDatabaseModel.Product_And_Category">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <EntitySet Name="Feedbacks" EntityType="SpendThriftDatabaseModel.Feedback" />
+    <EntitySet Name="FeedbackResponses" EntityType="SpendThriftDatabaseModel.FeedbackResponse" />
+    <AssociationSet Name="FK__FeedbackR__Respo__286302EC" Association="SpendThriftDatabaseModel.FK__FeedbackR__Respo__286302EC">
+      <End Role="Feedback" EntitySet="Feedbacks" />
+      <End Role="FeedbackResponse" EntitySet="FeedbackResponses" />
+    </AssociationSet>
+    <EntitySet Name="Carts" EntityType="SpendThriftDatabaseModel.Cart" />
+    <AssociationSet Name="FK__Cart__CustUserNa__300424B4" Association="SpendThriftDatabaseModel.FK__Cart__CustUserNa__300424B4">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cart__ProductID__30F848ED" Association="SpendThriftDatabaseModel.FK__Cart__ProductID__30F848ED">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <EntitySet Name="OrderProducts" EntityType="SpendThriftDatabaseModel.OrderProduct" />
+    <EntitySet Name="Orders" EntityType="SpendThriftDatabaseModel.Order" />
+    <AssociationSet Name="FK__Orders__CustUser__34C8D9D1" Association="SpendThriftDatabaseModel.FK__Orders__CustUser__34C8D9D1">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderProd__Order__37A5467C" Association="SpendThriftDatabaseModel.FK__OrderProd__Order__37A5467C">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderProduct" EntitySet="OrderProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderProd__Produ__38996AB5" Association="SpendThriftDatabaseModel.FK__OrderProd__Produ__38996AB5">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrderProduct" EntitySet="OrderProducts" />
+    </AssociationSet>
+    <EntitySet Name="BillingInformations" EntityType="SpendThriftDatabaseModel.BillingInformation" />
+    <AssociationSet Name="FK__BillingIn__CustU__4CA06362" Association="SpendThriftDatabaseModel.FK__BillingIn__CustU__4CA06362">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="BillingInformation" EntitySet="BillingInformations" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryName" />
+    </Key>
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="SpendThriftDatabaseModel.Product_And_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Product_ID" />
+    </Key>
+    <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Reviews" Relationship="SpendThriftDatabaseModel.FK__Review__ProductI__1ED998B2" FromRole="Product" ToRole="Review" />
+    <NavigationProperty Name="Categories" Relationship="SpendThriftDatabaseModel.Product_And_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Carts" Relationship="SpendThriftDatabaseModel.FK__Cart__ProductID__30F848ED" FromRole="Product" ToRole="Cart" />
+    <NavigationProperty Name="OrderProducts" Relationship="SpendThriftDatabaseModel.FK__OrderProd__Produ__38996AB5" FromRole="Product" ToRole="OrderProduct" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="CustUserName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Rating" Type="Int32" Nullable="false" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CUSTOMER" Relationship="SpendThriftDatabaseModel.FK__Review__CustUser__1FCDBCEB" FromRole="Review" ToRole="CUSTOMER" />
+    <NavigationProperty Name="Product" Relationship="SpendThriftDatabaseModel.FK__Review__ProductI__1ED998B2" FromRole="Review" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK__Review__CustUser__1FCDBCEB">
+    <End Type="SpendThriftDatabaseModel.CUSTOMER" Role="CUSTOMER" Multiplicity="0..1" />
+    <End Type="SpendThriftDatabaseModel.Review" Role="Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="USERNAME" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="CustUserName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Review__ProductI__1ED998B2">
+    <End Type="SpendThriftDatabaseModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="SpendThriftDatabaseModel.Review" Role="Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Product_ID" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Product_And_Category">
+    <End Type="SpendThriftDatabaseModel.Product" Role="Product" Multiplicity="*" />
+    <End Type="SpendThriftDatabaseModel.Category" Role="Category" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNumber" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FeedbackResponses" Relationship="SpendThriftDatabaseModel.FK__FeedbackR__Respo__286302EC" FromRole="Feedback" ToRole="FeedbackResponse" />
+  </EntityType>
+  <EntityType Name="FeedbackResponse">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResponseFor" Type="Int32" Nullable="false" />
+    <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RespondedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Feedback" Relationship="SpendThriftDatabaseModel.FK__FeedbackR__Respo__286302EC" FromRole="FeedbackResponse" ToRole="Feedback" />
+  </EntityType>
+  <Association Name="FK__FeedbackR__Respo__286302EC">
+    <End Type="SpendThriftDatabaseModel.Feedback" Role="Feedback" Multiplicity="1" />
+    <End Type="SpendThriftDatabaseModel.FeedbackResponse" Role="FeedbackResponse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feedback">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FeedbackResponse">
+        <PropertyRef Name="ResponseFor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustUserName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="ProductCount" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CUSTOMER" Relationship="SpendThriftDatabaseModel.FK__Cart__CustUserNa__300424B4" FromRole="Cart" ToRole="CUSTOMER" />
+    <NavigationProperty Name="Product" Relationship="SpendThriftDatabaseModel.FK__Cart__ProductID__30F848ED" FromRole="Cart" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK__Cart__CustUserNa__300424B4">
+    <End Type="SpendThriftDatabaseModel.CUSTOMER" Role="CUSTOMER" Multiplicity="0..1" />
+    <End Type="SpendThriftDatabaseModel.Cart" Role="Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="USERNAME" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="CustUserName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cart__ProductID__30F848ED">
+    <End Type="SpendThriftDatabaseModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="SpendThriftDatabaseModel.Cart" Role="Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Product_ID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OrderProduct">
+    <Key>
+      <PropertyRef Name="OrderProductsID" />
+    </Key>
+    <Property Name="OrderProductsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrdersID" Type="Int32" />
+    <Property Name="ProductsID" Type="Int32" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductPrice" Type="Int32" Nullable="false" />
+    <Property Name="ProductQuantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="SpendThriftDatabaseModel.FK__OrderProd__Order__37A5467C" FromRole="OrderProduct" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="SpendThriftDatabaseModel.FK__OrderProd__Produ__38996AB5" FromRole="OrderProduct" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustUsername" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Street_Address" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Apartment" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="OrderStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CUSTOMER" Relationship="SpendThriftDatabaseModel.FK__Orders__CustUser__34C8D9D1" FromRole="Order" ToRole="CUSTOMER" />
+    <NavigationProperty Name="OrderProducts" Relationship="SpendThriftDatabaseModel.FK__OrderProd__Order__37A5467C" FromRole="Order" ToRole="OrderProduct" />
+  </EntityType>
+  <Association Name="FK__Orders__CustUser__34C8D9D1">
+    <End Type="SpendThriftDatabaseModel.CUSTOMER" Role="CUSTOMER" Multiplicity="0..1" />
+    <End Type="SpendThriftDatabaseModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="USERNAME" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustUsername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderProd__Order__37A5467C">
+    <End Type="SpendThriftDatabaseModel.Order" Role="Order" Multiplicity="0..1" />
+    <End Type="SpendThriftDatabaseModel.OrderProduct" Role="OrderProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderProduct">
+        <PropertyRef Name="OrdersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderProd__Produ__38996AB5">
+    <End Type="SpendThriftDatabaseModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="SpendThriftDatabaseModel.OrderProduct" Role="OrderProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Product_ID" />
+      </Principal>
+      <Dependent Role="OrderProduct">
+        <PropertyRef Name="ProductsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BillingInformation">
+    <Key>
+      <PropertyRef Name="CustUserName" />
+    </Key>
+    <Property Name="CustUserName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="NameOnCard" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CardType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="Cvv" Type="Int32" Nullable="false" />
+    <Property Name="ZipCode" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CUSTOMER" Relationship="SpendThriftDatabaseModel.FK__BillingIn__CustU__4CA06362" FromRole="BillingInformation" ToRole="CUSTOMER" />
+  </EntityType>
+  <Association Name="FK__BillingIn__CustU__4CA06362">
+    <End Type="SpendThriftDatabaseModel.CUSTOMER" Role="CUSTOMER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="SpendThriftDatabaseModel.BillingInformation" Role="BillingInformation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="USERNAME" />
+      </Principal>
+      <Dependent Role="BillingInformation">
+        <PropertyRef Name="CustUserName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3534277bb075408ba0e034d71425249a" Name="Diagram1">
+        <EntityTypeShape EntityType="SpendThriftDatabaseModel.ADDRESS_BOOK" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpendThriftDatabaseModel.CUSTOMER" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="SpendThriftDatabaseModel.FK__ADDRESS_B__CUSTO__1273C1CD" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SpendThriftDatabaseModel.Category" Width="1.5" PointX="6" PointY="5.625" />
+        <EntityTypeShape EntityType="SpendThriftDatabaseModel.Product" Width="1.5" PointX="3.75" PointY="5" />
+        <EntityTypeShape EntityType="SpendThriftDatabaseModel.Review" Width="1.5" PointX="6" PointY="1.125" />
+        <AssociationConnector Association="SpendThriftDatabaseModel.FK__Review__CustUser__1FCDBCEB" />
+        <AssociationConnector Association="SpendThriftDatabaseModel.FK__Review__ProductI__1ED998B2" />
+        <AssociationConnector Association="SpendThriftDatabaseModel.Product_And_Category" />
+        <EntityTypeShape EntityType="SpendThriftDatabaseModel.Feedback" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SpendThriftDatabaseModel.FeedbackResponse" Width="1.5" PointX="3" PointY="9" />
+        <AssociationConnector Association="SpendThriftDatabaseModel.FK__FeedbackR__Respo__286302EC" />
+        <EntityTypeShape EntityType="SpendThriftDatabaseModel.Cart" Width="1.5" PointX="9" PointY="3.25" />
+        <AssociationConnector Association="SpendThriftDatabaseModel.FK__Cart__CustUserNa__300424B4" />
+        <AssociationConnector Association="SpendThriftDatabaseModel.FK__Cart__ProductID__30F848ED" />
+        <EntityTypeShape EntityType="SpendThriftDatabaseModel.OrderProduct" Width="1.5" PointX="6" PointY="8.75" />
+        <EntityTypeShape EntityType="SpendThriftDatabaseModel.Order" Width="1.5" PointX="3" PointY="12" />
+        <AssociationConnector Association="SpendThriftDatabaseModel.FK__Orders__CustUser__34C8D9D1" />
+        <AssociationConnector Association="SpendThriftDatabaseModel.FK__OrderProd__Order__37A5467C" />
+        <AssociationConnector Association="SpendThriftDatabaseModel.FK__OrderProd__Produ__38996AB5" />
+        <EntityTypeShape EntityType="SpendThriftDatabaseModel.BillingInformation" Width="1.5" PointX="3" PointY="16.5" />
+        <AssociationConnector Association="SpendThriftDatabaseModel.FK__BillingIn__CustU__4CA06362" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

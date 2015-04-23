@@ -1,0 +1,40 @@
+﻿<h1>Contact US..!!!!</h1>
+
+<div class="container">
+    <form name="feedbackForm" novalidate>
+        <main class="row">
+            <div class="col-md-3">
+                <fieldset>
+                    <legend></legend>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" name="subject" class="form-control" ng-model="feedback.subject" required />
+                        <div class="text-danger" ng-show="feedbackForm.subject.$error.required && feedbackForm.subject.$dirty">Please Enter Subject</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control" ng-model="feedback.name" required />
+                        <div class="text-danger" ng-show="feedbackForm.name.$error.required && feedbackForm.name.$dirty">Please Enter Name</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Number</label>
+                        <input type="text" name="contactnumber" class="form-control" ng-model="feedback.contactnumber" required />
+                        <div class="text-danger" ng-show="feedbackForm.contactnumber.$error.required && feedbackForm.contactnumber.$dirty">Please Enter Contact Number</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" ng-model="feedback.email" required />
+                        <div class="text-danger" ng-show="feedbackForm.email.$error.required && feedbackForm.email.$dirty">Please Enter email address</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea cols="30" rows="5" name="message" class="form-control" ng-model="feedback.message" required />
+                        <div class="text-danger" ng-show="feedbackForm.message.$error.required && feedbackForm.message.$dirty">Please Enter Message</div>
+                    </div>
+                </fieldset>
+            </div>
+        </main>
+        <button class="btn btn-default" ng-disabled="feedbackForm.$invalid" ng-click="submitfeedback(feedback)">Submit FeedBack</button>
+        <div class="label-primary" ng-show="error">An Error Occured Submitting Feedback</div>
+    </form>
+</div>

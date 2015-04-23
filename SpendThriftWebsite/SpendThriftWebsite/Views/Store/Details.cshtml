@@ -1,0 +1,47 @@
+﻿@using SpendThriftWebsite.Infrastructure
+
+@model SpendThriftModel.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        @Html.Image(@Model.ImageUrl, @Model.Name)
+    </div>
+    <div class="col-md-6 thumbnail">
+        <div class="row">
+            <h2 class="text-danger col-md-4 col-md-offset-2">Price:  @Model.Price $</h2>
+        </div>
+        <div class="row">
+            <h3 class="text-primary col-md-12 col-md-offset-2">Quantity: @Model.Quantity</h3>
+        </div>      
+        <div class="row">
+            <h4 class="text-info col-md-12 col-md-offset-2">Description : @Model.Description</h4>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="row">
+            <br /><br /><br />
+            <button class="btn btn-default col-md-offset-2">
+                @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = Model.Product_ID }, "")
+            </button>
+        </div>   
+    </div>
+</div>
+<br />
+<br />
+
+<h2 class="text-danger">Reviews</h2>
+<h2 class="btn btn-danger">@Html.ActionLink("Create New", "Review", "Product", new { id = Model.Product_ID },null)</h2>
+<br />
+<br />
+ @foreach(var review in @Model.Reviews)
+ {
+    <div class="row thumbnail">
+        <p class="col-md-10">@review.Description</p>
+        <h4 class="text-info col-md-2 text-right">@review.CustUserName</h4>
+    </div>      
+ }
+

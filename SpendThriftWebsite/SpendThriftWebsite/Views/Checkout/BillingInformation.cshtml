@@ -1,0 +1,68 @@
+﻿@model SpendThriftModel.BillingInformation
+
+@{
+    ViewBag.Title = "BillingInformation";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>BillingInformation</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustUserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CustUserName)
+            @Html.ValidationMessageFor(model => model.CustUserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NameOnCard)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NameOnCard)
+            @Html.ValidationMessageFor(model => model.NameOnCard)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CardType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CardType)
+            @Html.ValidationMessageFor(model => model.CardType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CardNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CardNumber)
+            @Html.ValidationMessageFor(model => model.CardNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cvv)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cvv)
+            @Html.ValidationMessageFor(model => model.Cvv)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ZipCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ZipCode)
+            @Html.ValidationMessageFor(model => model.ZipCode)
+        </div>
+
+        <br />
+        <p>
+            <input type="submit" value="Confirm Order" class="btn btn-success"/>
+        </p>
+    </fieldset>
+}
+

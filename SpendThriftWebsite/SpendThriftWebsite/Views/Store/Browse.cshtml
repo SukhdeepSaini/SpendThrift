@@ -1,0 +1,23 @@
+﻿@using SpendThriftWebsite.Infrastructure
+
+@model SpendThriftModel.Category
+
+@{
+    ViewBag.Title = "Browse";
+}
+
+<h2 class="text-info">@Model.CategoryName</h2>
+
+<div class="row col-md-offset-1">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-md-3 col-md-offset-0 ebayItemsDiv">
+            @Html.Image(@product.ImageUrl,@product.Name)
+            <h3>@Html.ActionLink("View Details", "Details", new { id = product.Product_ID })</h3>
+        </div>
+
+    }
+</div>
+
+
+

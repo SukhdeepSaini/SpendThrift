@@ -1,0 +1,8 @@
+C:\Users\Sukhdev\Desktop\Sukhdeep Stuff\Database Project\SpendThriftWebsite\SpendThriftModel\bin\Debug\SpendThriftModel.dll.config
+C:\Users\Sukhdev\Desktop\Sukhdeep Stuff\Database Project\SpendThriftWebsite\SpendThriftModel\bin\Debug\SpendThriftModel.dll
+C:\Users\Sukhdev\Desktop\Sukhdeep Stuff\Database Project\SpendThriftWebsite\SpendThriftModel\bin\Debug\SpendThriftModel.pdb
+C:\Users\Sukhdev\Desktop\Sukhdeep Stuff\Database Project\SpendThriftWebsite\SpendThriftModel\bin\Debug\EntityFramework.dll
+C:\Users\Sukhdev\Desktop\Sukhdeep Stuff\Database Project\SpendThriftWebsite\SpendThriftModel\bin\Debug\EntityFramework.xml
+C:\Users\Sukhdev\Desktop\Sukhdeep Stuff\Database Project\SpendThriftWebsite\SpendThriftModel\obj\Debug\SpendThriftModel.csprojResolveAssemblyReference.cache
+C:\Users\Sukhdev\Desktop\Sukhdeep Stuff\Database Project\SpendThriftWebsite\SpendThriftModel\obj\Debug\SpendThriftModel.dll
+C:\Users\Sukhdev\Desktop\Sukhdeep Stuff\Database Project\SpendThriftWebsite\SpendThriftModel\obj\Debug\SpendThriftModel.pdb
